@@ -482,3 +482,72 @@
                     );
                 } catch (error) {
                     console.error("Error in startTracking:", error);
+                    alert("Failed to start tracking. Please try again.");
+                    setTracking(false);
+                }
+            };
+            
+            // Stop tracking location
+            const stopTracking = () => {
+                try {
+                    if (watchIdRef.current) {
+                        navigator.geolocation.clearWatch(watchIdRef.current);
+                        watchIdRef.current = null;
+                    }
+                    lastPositionRef.current = null;
+                    setTracking(false);
+                    console.log("Stopped location tracking");
+                } catch (error) {
+                    console.error("Error in stopTracking:", error);
+                }
+            };
+            
+            // Helper function to check if a segment exists in routes
+            const checkSegmentInRoutes = (segment, routes) => {
+                return routes.some(route => segmentsEqual(route, segment));
+            };
+            
+            // Helper function to check if two segments are approximately equal
+            const segmentsEqual = (segment1, segment2) => {
+                try {
+                    const [start1, end1] = segment1;
+                    const [start2, end2] = segment2;
+                    
+                    const distance1 = calculateDistance(start1, start2);
+                    const distance2 = calculateDistance(end1, end2);
+                    
+                    // Consider segments equal if start and end points are within 10 meters
+                    return distance1 < 0.01 && distance2 < 0.01;
+                } catch (error) {
+                    console.error("Error in segmentsEqual:", error);
+                    return false;
+                }
+            };
+            
+            // Calculate distance between two points (in km)
+            const calculateDistance = (point1, point2) => {
+                try {
+                    const [lat1, lon1] = point1;
+                    const [lat2, lon2] = point2;
+                    
+                    const R = 6371; // Radius of the earth in km
+                    const dLat = deg2rad(lat2 - lat1);
+                    const dLon = deg2rad(lon2 - lon1);
+                    const a = 
+                        Math.sin(dLat/2) * Math.sin(dLat/2) +
+                        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * 
+                        Math.sin(dLon/2) * Math.sin(dLon/2);
+                    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+                    return R * c;
+                } catch (error) {
+                    console.error("Error in calculateDistance:", error);
+                    return 0;
+                }
+            };
+            
+            const deg2rad = (deg) => {
+                return deg * (Math.PI/180);
+            };
+            
+            return (
+                <div className="app-container">
