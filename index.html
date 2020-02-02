@@ -344,3 +344,72 @@
                 }
             };
             
+            // Draw routes on the map
+            const drawRoutes = (routes) => {
+                if (!leafletMapRef.current) {
+                    console.warn("Cannot draw routes: map not initialized");
+                    return;
+                }
+                
+                try {
+                    // Clear existing polyline layers
+                    leafletMapRef.current.eachLayer((layer) => {
+                        if (layer instanceof L.Polyline) {
+                            leafletMapRef.current.removeLayer(layer);
+                        }
+                    });
+                    
+                    // Draw frequent routes (red)
+                    routes.frequentRoutes.forEach(route => {
+                        L.polyline(route, { color: 'red', weight: 5 }).addTo(leafletMapRef.current);
+                    });
+                    
+                    // Draw occasional routes (yellow)
+                    routes.occasionalRoutes.forEach(route => {
+                        L.polyline(route, { color: 'yellow', weight: 5 }).addTo(leafletMapRef.current);
+                    });
+                    
+                    // Draw new routes (blue)
+                    routes.newRoutes.forEach(route => {
+                        L.polyline(route, { color: 'blue', weight: 5 }).addTo(leafletMapRef.current);
+                    });
+                    
+                    console.log("Drew routes on map");
+                } catch (error) {
+                    console.error("Error drawing routes:", error);
+                }
+            };
+            
+            // Start tracking location
+            const startTracking = () => {
+                if (!navigator.geolocation) {
+                    alert("Geolocation is not supported by your browser");
+                    return;
+                }
+                
+                try {
+                    setTracking(true);
+                    console.log("Starting location tracking");
+                    
+                    const currentRoute = [];
+                    
+                    watchIdRef.current = navigator.geolocation.watchPosition(
+                        (position) => {
+                            const { latitude, longitude } = position.coords;
+                            const currentPosition = [latitude, longitude];
+                            
+                            console.log("New position:", latitude, longitude);
+                            
+                            // Center map on current position
+                            if (leafletMapRef.current) {
+                                leafletMapRef.current.setView(currentPosition, 16);
+                            }
+                            
+                            // Add position to current route
+                            currentRoute.push(currentPosition);
+                            
+                            // If we have a previous position, draw a line
+                            if (lastPositionRef.current) {
+                                const segment = [lastPositionRef.current, currentPosition];
+                                
+                                // Check if this segment exists in any routes
