@@ -275,3 +275,72 @@
                 
                 if (!leafletMapRef.current && mapRef.current) {
                     try {
+                        console.log("Initializing Leaflet map");
+                        leafletMapRef.current = L.map(mapRef.current).setView([51.505, -0.09], 13);
+                        
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        }).addTo(leafletMapRef.current);
+                        
+                        // Try to get user's current location
+                        if (navigator.geolocation) {
+                            navigator.geolocation.getCurrentPosition(
+                                (position) => {
+                                    const { latitude, longitude } = position.coords;
+                                    leafletMapRef.current.setView([latitude, longitude], 13);
+                                    console.log("Set map view to user location:", latitude, longitude);
+                                },
+                                (error) => {
+                                    console.warn("Error getting initial location:", error);
+                                    // Continue with default location
+                                }
+                            );
+                        }
+                        
+                        // Load saved routes from localStorage
+                        loadRoutes();
+                    } catch (error) {
+                        console.error("Error initializing map:", error);
+                        setMapError("Failed to initialize map. Please refresh the page and try again.");
+                    }
+                }
+                
+                return () => {
+                    if (leafletMapRef.current) {
+                        console.log("Cleaning up Leaflet map");
+                        leafletMapRef.current.remove();
+                        leafletMapRef.current = null;
+                    }
+                };
+            }, []);
+            
+            // Load routes from localStorage
+            const loadRoutes = () => {
+                if (!user) return;
+                
+                try {
+                    const savedRoutes = localStorage.getItem(`routes_${user.username}`);
+                    if (savedRoutes) {
+                        const parsedRoutes = JSON.parse(savedRoutes);
+                        setRouteData(parsedRoutes);
+                        
+                        // Draw routes on the map
+                        drawRoutes(parsedRoutes);
+                        console.log("Loaded routes from localStorage:", parsedRoutes);
+                    }
+                } catch (error) {
+                    console.error("Error loading routes:", error);
+                }
+            };
+            
+            // Save routes to localStorage
+            const saveRoutes = (routes) => {
+                if (!user) return;
+                try {
+                    localStorage.setItem(`routes_${user.username}`, JSON.stringify(routes));
+                    console.log("Saved routes to localStorage");
+                } catch (error) {
+                    console.error("Error saving routes:", error);
+                }
+            };
+            
