@@ -551,3 +551,72 @@
             
             return (
                 <div className="app-container">
+                    <div className="header">
+                        <h1>Travel Route Tracker</h1>
+                        <div>
+                            <span>Welcome, {user.username}!</span>
+                            <button className="button logout" onClick={logout} style={{ marginLeft: '1rem' }}>Logout</button>
+                        </div>
+                    </div>
+                    <div className="map-container">
+                        {mapError && <div className="error-message">{mapError}</div>}
+                        <div id="map" ref={mapRef} style={{ height: mapError ? 'calc(100% - 40px)' : '100%' }}></div>
+                        <div className="controls">
+                            {!tracking ? (
+                                <button className="button" onClick={startTracking}>Start Tracking</button>
+                            ) : (
+                                <button className="button stop" onClick={stopTracking}>Stop Tracking</button>
+                            )}
+                        </div>
+                        <div className="legend">
+                            <h3>Route Legend</h3>
+                            <div className="legend-item">
+                                <div className="legend-color" style={{ backgroundColor: 'red' }}></div>
+                                <span>Frequent Routes</span>
+                            </div>
+                            <div className="legend-item">
+                                <div className="legend-color" style={{ backgroundColor: 'yellow' }}></div>
+                                <span>Occasional Routes</span>
+                            </div>
+                            <div className="legend-item">
+                                <div className="legend-color" style={{ backgroundColor: 'blue' }}></div>
+                                <span>New Routes</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+        
+        // Main App Component
+        const App = () => {
+            const { user, loading } = React.useContext(AuthContext);
+            const [error, setError] = React.useState('');
+            
+            React.useEffect(() => {
+                console.log("App component mounted, user:", user, "loading:", loading);
+                
+                // Add global error handler
+                window.addEventListener('error', (event) => {
+                    console.error("Global error:", event.error);
+                    setError("An unexpected error occurred. Please refresh the page.");
+                });
+                
+                return () => {
+                    window.removeEventListener('error', () => {});
+                };
+            }, []);
+            
+            if (error) {
+                return (
+                    <div className="error-message" style={{ margin: '20px', padding: '20px' }}>
+                        <h2>Error</h2>
+                        <p>{error}</p>
+                        <button 
+                            className="button" 
+                            onClick={() => window.location.reload()}
+                        >
+                            Refresh Page
+                        </button>
+                    </div>
+                );
