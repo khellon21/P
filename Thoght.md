@@ -80,3 +80,15 @@ I currently manage **3 devices**.
 ---
 
 ## 10. Cybersecurity Training Experience
+
+I have completed **a couple of cybersecurity-related YouTube courses**, which helped me understand security fundamentals, threats, and best practices.
+
+---
+
+## 11. Cybersecurity Advice Given
+
+The cybersecurity advice I give is:
+- Even trusted websites can have vulnerabilities. Use strong, complex passwords so that exploiting those vulnerabilities would take hackers millions of years.
+
+---
+
