@@ -40,3 +40,15 @@ TODO:
    - See rule 4
    - iptables can restrict based on user ID
    - typically this is done with an SSH configuration of the `AllowedUsers` parameter
+
+6. Allow the DB server to accept traffic only if it comes from the Web Server SG.
+    - SOURCE: ID of the Web Server Security Group (e.g., sg-123456)
+    - PORT: Database Port (3306 for MySQL, 5432 for Postgres, or 1433 for SQL Server)
+    - PROTOCOL: TCP
+    - SG (Security Group) on DB Instance INBOUND
+    - *Note: Using the Security Group ID as the source allows dynamic IP changes on the web server without breaking access.*
+
+7. Block an entire country's IP range from the VPC. (Let's use China as the strawman)
+    - SOURCE: Country CIDR blocks (List of IP ranges allocated to the country)
+    - PORTS: ALL
+    - PROTOCOLS: ALL
