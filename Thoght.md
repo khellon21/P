@@ -31,3 +31,16 @@ Their primary market is **system administrators and IT professionals**, particul
 ## 4. Survey Respondents
 
 The survey respondents were **over 1,000 IT professionals**, including:
+- Sysadmins
+- Senior sysadmins
+- IT managers
+- Systems engineers
+- Help desk technicians
+- Executives  
+
+Most respondents actively perform day-to-day IT and infrastructure tasks.
+
+---
+
+## 5. Demographics Conclusions
+
