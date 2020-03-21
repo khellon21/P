@@ -100,3 +100,12 @@ TODO:
 ---
 
 ## Rubric:
+
+Score / 24
+
+- 8 rules (6 - 13) were to be filled out outside of class
+- for each, student needed to propose:
+    - Source / Destination 
+    - Port & protocol
+    - Where to place rule
+    - If rule should be inbound or outbound
