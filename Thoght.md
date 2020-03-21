@@ -56,3 +56,15 @@ Most respondents actively perform day-to-day IT and infrastructure tasks.
 ---
 
 ## 7. Sentiment on the IT Field
+
+Based on the Sentiment section of the report, the IT field is **challenging but stable**.  
+Stress levels have increased, but most sysadmins feel secure in their jobs and intend to stay in the field. Security concerns and workload are high, yet long-term career confidence remains strong.
+
+---
+
+## 8. Best Tasks Suited for Automation
+
+The tasks best suited for automation are:
+- **Software deployment**
+- **Patch management**
+- **Device imaging**
