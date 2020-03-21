@@ -18,3 +18,16 @@ This image represents systems administration to me because it shows monitoring, 
 3. **Patch management & OS updates** – Especially critical for both Windows and Apple devices.
 4. **Asset management** – Tracking, maintaining, and retiring devices efficiently.
 5. **Automation & scripting** – Increasing efficiency and reducing manual workload.
+
+---
+
+## 3. Report Author & Primary Market
+
+The *State of the SysAdmin 2025* report was written by **PDQ**.  
+Their primary market is **system administrators and IT professionals**, particularly those managing endpoints, deployments, device inventories, and security in small to mid-sized organizations.
+
+---
+
+## 4. Survey Respondents
+
+The survey respondents were **over 1,000 IT professionals**, including:
