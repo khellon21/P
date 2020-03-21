@@ -104,3 +104,15 @@ The cybersecurity advice I give is:
 
 ---
 
+## 14. Conclusions
+
+- Cybersecurity remains the most critical concern across industries.
+- Automation and proper tooling are essential for managing increasing workloads.
+- Sysadmins play a vital role in maintaining operational stability and security.
+
+---
+
+## 15. Tools from the Report I Want Experience With
+
+- **PDQ Deploy / PDQ Connect**  
+  These tools would strengthen my resume by showcasing experience in automation, software deployment, and endpoint management.
