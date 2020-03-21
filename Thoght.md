@@ -44,3 +44,15 @@ Most respondents actively perform day-to-day IT and infrastructure tasks.
 
 ## 5. Demographics Conclusions
 
+- Most sysadmins work at **small to medium-sized organizations (SMBs)** managing between **101–500 devices**.
+- The majority of respondents have **6+ years of experience**, showing that sysadmins tend to stay long-term in the field.
+
+---
+
+## 6. Dayton-Area IT Salary Resource
+
+[Dayton, OH IT Salary Data – Indeed](https://www.indeed.com/career/it-specialist/salaries/Dayton--OH)
+
+---
+
+## 7. Sentiment on the IT Field
