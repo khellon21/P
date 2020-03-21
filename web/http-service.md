@@ -30,3 +30,11 @@ Whenever a configuration file is modified, a new site is enabled, or a site is d
 
 ![First screenshot](Picture/1.png)
 
+`curl something-menu.com:8080`
+
+![Second screenshot](Picture/2.png)
+
+## System Logs
+To verify that the NGINX service is successfully serving content based on different requests, you can check the access logs.
+* **How to access:** Run `sudo tail /var/log/nginx/access.log` to view the most recent requests.
+* **What they show:** The logs display the IP address of the requester, the timestamp, the HTTP request method (`GET`), the URL requested, and the HTTP status code. Seeing a `200` status code confirms that NGINX successfully served the content for both the main site and the menu site when the `curl` commands were executed.
