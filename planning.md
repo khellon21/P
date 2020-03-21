@@ -50,3 +50,16 @@
 * **Developer Access:** **SFTP** (Secure File Transfer Protocol) over SSH. 
 * **Dev Permissions:** Developers will be added to the `www-data` group. Use `chmod -R g+s` on web directories so new files inherit group ownership.
 
+---
+
+## 5. Planning for HTTPS
+### Certificate Management
+* **Creation:** Use OpenSSL: `openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/webserver.key -out /etc/ssl/certs/webserver.crt`
+* **Storage:** * Private Key: `/etc/ssl/private/` (Permission: `600` - Root only).
+    * Public Cert: `/etc/ssl/certs/` (Permission: `644`).
+* **CA Validation:** **Domain Validation (DV)** is appropriate for this use case as it verifies control over the domain without requiring legal business documentation.
+
+### HTTPS Implementation
+* **Virtual Host Changes:** Add a new block/server section listening on port **443** with `ssl` enabled and paths to the `.crt` and `.key` files.
+* **HTTP Redirection:** * *Apache:* Use `Redirect permanent / https://[domain]/` inside the port 80 VirtualHost.
+    * *Nginx:* Use `return 301 https://$host$request_uri;` inside the port 80 server block.
