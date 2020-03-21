@@ -64,3 +64,15 @@ TODO:
 
 9. A user sends an HTTPS request to your web server; the server needs to send the webpage data back.
     - DESTINATION: 0.0.0.0/0 (The User's IP)
+    - PORT: Ephemeral Ports (1024 - 65535)
+    - PROTOCOL: TCP
+    - NACL OUTBOUND
+    - *Note: Security Groups are stateful and automatically allow return traffic. NACLs are stateless and require this explicit outbound rule for the reply.*
+
+10. Prevent two different instances within the same subnet from talking to each other.
+    - SOURCE: Subnet CIDR (e.g., 10.0.1.0/24) or Security Group ID (Self-referencing)
+    - PORTS: ALL
+    - PROTOCOLS: ALL
+    - SG (Security Group) INBOUND (Ensure NO rule allows the Subnet IP or Self-SG ID)
+    - SYS (iptables) INBOUND (Explicit DROP from local subnet range)
+    - *Note: NACLs generally apply to traffic entering/leaving the subnet, not moving inside it. You must use SG or System firewalls.*
