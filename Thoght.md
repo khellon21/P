@@ -116,3 +116,9 @@ The cybersecurity advice I give is:
 
 - **PDQ Deploy / PDQ Connect**  
   These tools would strengthen my resume by showcasing experience in automation, software deployment, and endpoint management.
+
+- **SimpleMDM**  
+  Gaining experience with Apple device management would be valuable due to the increasing presence of Apple devices in enterprise environments.
+
+---
+
