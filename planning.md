@@ -24,3 +24,16 @@
 ---
 
 ## 3. Web Service Configuration
+### Configuration Files
+* **Main Config Path:** [Apache: `/etc/apache2/apache2.conf` | Nginx: `/etc/nginx/nginx.conf`]
+* **Virtual Host Path:** [Apache: `/etc/apache2/sites-available/` | Nginx: `/etc/nginx/conf.d/` or `sites-available/`]
+* **Additional Mods:** Edit `/etc/hosts` on the local machine to map the server IP to the two test domains (e.g., `192.168.1.10 site1.test site2.test`).
+
+### Service Control (Daemon)
+* **Start:** `sudo systemctl start [apache2|nginx]`
+* **Stop:** `sudo systemctl stop [apache2|nginx]`
+* **Restart:** `sudo systemctl restart [apache2|nginx]`
+* **Reload (Config change only):** `sudo systemctl reload [apache2|nginx]`
+
+---
+
