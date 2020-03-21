@@ -88,3 +88,15 @@ TODO:
     - SOURCE: Office Public IP (e.g., 203.0.113.10/32)
     - PORT: N/A (ICMP does not use ports)
     - PROTOCOL: ICMP (Type 8 - Echo Request)
+    - SG (Security Group) INBOUND
+
+13. Traffic arrives on Port 80 but needs to be redirected to an internal service running on Port 8080.
+    - SOURCE: 0.0.0.0/0
+    - PORT: 80 redirected to 8080
+    - PROTOCOL: TCP
+    - SYS (iptables / firewalld)
+    - *Note: This requires a PREROUTING NAT rule (e.g., `iptables -t nat -A PREROUTING -p tcp --dport 80 -j REDIRECT --to-port 8080`).*
+
+---
+
+## Rubric:
