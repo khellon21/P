@@ -16,3 +16,15 @@ TODO:
     - PORTS = ALL
     - PROTOCOLS = ALL
     - NACL INBOUND (Action: DENY)
+
+2. Block customers devices from talking to servers.
+    - SOURCE: 10.0.0.0/24
+    - PORTS = ALL
+    - PROTOCOLS = ALL
+    - NACL OUTBOUND to SERVER subnet
+    - TODO - DESIGN CHANGE - we need NACL to apply unique to subnets
+
+3. Allow HTTP/S traffic from the entire internet to the Web Server.
+    - SOURCE: 0.0.0.0/0
+    - PORTS = 80 & 443
+    - PROTOCOLS = HTTP and HTTPS (TCP)
