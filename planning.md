@@ -63,3 +63,9 @@
 * **Virtual Host Changes:** Add a new block/server section listening on port **443** with `ssl` enabled and paths to the `.crt` and `.key` files.
 * **HTTP Redirection:** * *Apache:* Use `Redirect permanent / https://[domain]/` inside the port 80 VirtualHost.
     * *Nginx:* Use `return 301 https://$host$request_uri;` inside the port 80 server block.
+
+---
+
+## 6. Logging (Stretch Goals)
+* **Log Locations:** `/var/log/[apache2|nginx]/access.log` and `error.log`.
+* **Viewing Logs:** `tail -f /var/log/[service]/access.log` for real-time traffic monitoring.
