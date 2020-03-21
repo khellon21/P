@@ -110,3 +110,15 @@ total 8
 drwxrwxr-x 2 staff-member menustaff 4096 Mar 25 14:52 .
 drwxr-xr-x 3 root         root      4096 Mar 25 14:52 ..
 ```
+
+---
+
+## Explanation of Jail and Edit Permissions
+
+To satisfy the strict requirements of the SSH Chroot feature, the parent jail directories (`/var/www/main_site` and `/var/www/menu_site`) are owned by `root:root` with `755` permissions.
+
+Inside the jails, the `public_html` directories are owned by the specific users (`owner` and `staff-member`) and their corresponding groups (`webadmins` and `menustaff`) with `775` permissions.
+
+This allows members of those groups to freely upload, edit, and delete files inside the web root, while the "other" read/execute permission (the `5` in `775`) ensures the `www-data` service (Apache/Nginx) can still read and serve the files to the public internet.
+
+---
