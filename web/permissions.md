@@ -74,3 +74,15 @@ This log proves the SSH override successfully allowed password authentication an
 2026-03-25T15:15:22.120017+00:00 ip-10-0-20-196 sshd[1755]: Accepted password for owner from 127.0.0.1 port 48698 ssh2
 2026-03-25T15:15:22.121601+00:00 ip-10-0-20-196 sshd[1755]: pam_unix(sshd:session): session opened for user owner(uid=1001) by owner(uid=0)
 2026-03-25T15:15:22.128809+00:00 ip-10-0-20-196 systemd-logind[553]: New session 10 of user owner.
+2026-03-25T15:15:22.348666+00:00 ip-10-0-20-196 sshd[1840]: error: /dev/pts/1: No such file or directory
+```
+
+---
+
+## Permission Verification
+
+### Main Site Directory Status
+
+```plaintext
+ubuntu@ip-10-0-20-196:~$ ls -la /var/www/main_site
+total 12
