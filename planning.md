@@ -37,3 +37,16 @@
 
 ---
 
+## 4. Location & Access
+### Content Organization
+* **Root Directory:** `/var/www/`
+* **Site 1:** `/var/www/site1/public_html`
+* **Site 2:** `/var/www/site2/public_html`
+
+### Permissions & Users
+* **Runtime User:** `www-data` (or `nginx`/`apache` depending on OS).
+* **Directory Permissions:** `755` (Owner: rwx, Group/Others: r-x).
+* **File Permissions:** `644` (Owner: rw-, Group/Others: r--).
+* **Developer Access:** **SFTP** (Secure File Transfer Protocol) over SSH. 
+* **Dev Permissions:** Developers will be added to the `www-data` group. Use `chmod -R g+s` on web directories so new files inherit group ownership.
+
