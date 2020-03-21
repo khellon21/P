@@ -28,3 +28,15 @@ TODO:
     - SOURCE: 0.0.0.0/0
     - PORTS = 80 & 443
     - PROTOCOLS = HTTP and HTTPS (TCP)
+    - NACL allow inbound; SG allow inbound; MUST HANDLE SYS if ENABLED
+
+4. Allow SSH (Port 22) only from known admin network IPs (other servers on the subnet; any WSU IP / OAR; Admin home - public IP via ISP).
+    - SOURCE: 10.0.1.96/28; 130.108.0.0/16; Run a what is my ip at home /32
+    - PORT: 22
+    - PROTOCOL: SSH (TCP)
+    - NACL - allow inbound; SG allow inbound; MUST HANDLE SYS if ENABLED
+
+5. Allow SSH (Port 22) only for a specific user ID on the Linux server.
+   - See rule 4
+   - iptables can restrict based on user ID
+   - typically this is done with an SSH configuration of the `AllowedUsers` parameter
