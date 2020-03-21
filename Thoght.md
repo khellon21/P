@@ -68,3 +68,15 @@ The tasks best suited for automation are:
 - **Software deployment**
 - **Patch management**
 - **Device imaging**
+
+These tasks are repetitive, time-consuming, and error-prone when done manually. Automation tools significantly reduce workload and improve consistency.
+
+---
+
+## 9. Number of Devices Managed
+
+I currently manage **3 devices**.
+
+---
+
+## 10. Cybersecurity Training Experience
