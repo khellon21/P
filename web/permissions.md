@@ -38,3 +38,15 @@ Match Group menustaff
     ChrootDirectory /var/www/menu_site
     ForceCommand internal-sftp
     AllowTcpForwarding no
+    X11Forwarding no
+    PasswordAuthentication yes
+```
+
+### What `ChrootDirectory` Does
+
+`ChrootDirectory` essentially creates a "jail" for the connected user, changing their root directory to the specified path. To the user, `/var/www/main_site` appears as `/` (the top of the file system), making it impossible for them to `cd` up into sensitive system directories like `/etc` or `/var/log`.
+
+### Strict Ownership Requirement
+
+For security, SSH requires that the directory specified in the Chroot directive (the jail itself), and all its parent directories, be owned by `root` and not be group-writable. If this strict `root:root` requirement isn't met, the SSH daemon will refuse the connection entirely.
+
