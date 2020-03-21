@@ -76,3 +76,15 @@ TODO:
     - SG (Security Group) INBOUND (Ensure NO rule allows the Subnet IP or Self-SG ID)
     - SYS (iptables) INBOUND (Explicit DROP from local subnet range)
     - *Note: NACLs generally apply to traffic entering/leaving the subnet, not moving inside it. You must use SG or System firewalls.*
+
+11. Immediately block a known botnet range (e.g., 192.0.2.0/24) before it even reaches your web server.
+    - SOURCE: 192.0.2.0/24
+    - PORTS: ALL
+    - PROTOCOLS: ALL
+    - NACL INBOUND (Action: DENY)
+    - *Note: NACL is processed before the Security Group.*
+
+12. We want to allow ping for troubleshooting, but only from our office IP.
+    - SOURCE: Office Public IP (e.g., 203.0.113.10/32)
+    - PORT: N/A (ICMP does not use ports)
+    - PROTOCOL: ICMP (Type 8 - Echo Request)
