@@ -92,3 +92,15 @@ The cybersecurity advice I give is:
 
 ---
 
+## 12. Server Operating System Market Share Resource
+
+[Server OS Market Share – Statista](https://www.statista.com/statistics/915085/global-server-operating-system-market-share/)
+
+---
+
+## 13. Employee Computer Operating System Market Share Resource
+
+[Desktop OS Market Share – StatCounter](https://gs.statcounter.com/os-market-share/desktop/worldwide)
+
+---
+
