@@ -50,3 +50,15 @@ Match Group menustaff
 
 For security, SSH requires that the directory specified in the Chroot directive (the jail itself), and all its parent directories, be owned by `root` and not be group-writable. If this strict `root:root` requirement isn't met, the SSH daemon will refuse the connection entirely.
 
+### What `ForceCommand internal-sftp` Does
+
+Because the user is locked in a jail, they do not have access to standard system binaries (like the regular SFTP server binary usually located in `/usr/lib/`). `ForceCommand internal-sftp` tells the SSH daemon to use its own built-in SFTP server to handle the connection, bypassing the need for external files inside the jail.
+
+---
+
+## Testing & Logs
+
+### Successful SFTP Login
+
+![First screenshot](Picture/3.png)
+
