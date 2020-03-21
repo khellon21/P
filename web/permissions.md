@@ -98,3 +98,15 @@ drwxr-xr-x 3 root root 4096 Mar 25 14:52 ..
 
 ### Menu Site Directory Status
 
+```plaintext
+ubuntu@ip-10-0-20-196:~$ ls -la /var/www/menu_site
+total 12
+drwxr-xr-x 3 root         root      4096 Mar 25 14:52 .
+drwxr-xr-x 7 root         root      4096 Mar 25 14:52 ..
+drwxrwxr-x 2 staff-member menustaff 4096 Mar 25 14:52 public_html
+
+ubuntu@ip-10-0-20-196:~$ ls -la /var/www/menu_site/public_html
+total 8
+drwxrwxr-x 2 staff-member menustaff 4096 Mar 25 14:52 .
+drwxr-xr-x 3 root         root      4096 Mar 25 14:52 ..
+```
