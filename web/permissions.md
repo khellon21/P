@@ -86,3 +86,15 @@ This log proves the SSH override successfully allowed password authentication an
 ```plaintext
 ubuntu@ip-10-0-20-196:~$ ls -la /var/www/main_site
 total 12
+drwxr-xr-x 3 root root 4096 Mar 25 14:52 .
+drwxr-xr-x 7 root root 4096 Mar 25 14:52 ..
+drwxrwxr-x 2 root root 4096 Mar 25 14:52 public_html
+
+ubuntu@ip-10-0-20-196:~$ ls -la /var/www/main_site/public_html
+total 8
+drwxrwxr-x 2 owner webadmins 4096 Mar 25 14:52 .
+drwxr-xr-x 3 root root 4096 Mar 25 14:52 ..
+```
+
+### Menu Site Directory Status
+
