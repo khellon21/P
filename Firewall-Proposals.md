@@ -52,3 +52,15 @@ TODO:
     - SOURCE: Country CIDR blocks (List of IP ranges allocated to the country)
     - PORTS: ALL
     - PROTOCOLS: ALL
+    - NACL INBOUND (Action: DENY)
+    - *Note: SGs generally cannot explicitly "Deny" specific IPs, only "Allow". NACLs or a WAF (Web Application Firewall) are required for blocking.*
+
+8. Allow an EC2 instance in a private subnet to download updates from the internet via a NAT Gateway.
+    - DESTINATION: 0.0.0.0/0
+    - PORTS: 80 & 443
+    - PROTOCOL: HTTP & HTTPS (TCP)
+    - SG (Security Group) on Instance OUTBOUND
+    - *Note: NACL must also allow Inbound Return traffic on Ephemeral Ports (1024-65535).*
+
+9. A user sends an HTTPS request to your web server; the server needs to send the webpage data back.
+    - DESTINATION: 0.0.0.0/0 (The User's IP)
