@@ -26,3 +26,15 @@ Setting the user's shell to `/usr/sbin/nologin` is a strict security measure. It
 
 ### Match Group Snippet:
 
+```ssh
+Match Group webadmins
+    ChrootDirectory /var/www/main_site
+    ForceCommand internal-sftp
+    AllowTcpForwarding no
+    X11Forwarding no
+    PasswordAuthentication yes
+
+Match Group menustaff
+    ChrootDirectory /var/www/menu_site
+    ForceCommand internal-sftp
+    AllowTcpForwarding no
