@@ -62,3 +62,15 @@ Because the user is locked in a jail, they do not have access to standard system
 
 ![First screenshot](Picture/3.png)
 
+### Denied SSH Login
+
+![First screenshot](Picture/4.png)
+
+### Log Verification (`/var/log/auth.log`)
+
+This log proves the SSH override successfully allowed password authentication and created the jailed session. The `error: /dev/pts/1: No such file or directory` is definitive proof of the Chroot jail functioning, as the jailed environment lacks standard system device files.
+
+```plaintext
+2026-03-25T15:15:22.120017+00:00 ip-10-0-20-196 sshd[1755]: Accepted password for owner from 127.0.0.1 port 48698 ssh2
+2026-03-25T15:15:22.121601+00:00 ip-10-0-20-196 sshd[1755]: pam_unix(sshd:session): session opened for user owner(uid=1001) by owner(uid=0)
+2026-03-25T15:15:22.128809+00:00 ip-10-0-20-196 systemd-logind[553]: New session 10 of user owner.
