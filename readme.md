@@ -48,9 +48,21 @@ It provides the permissions of the **`ubuntu`** user, since that account execute
 ### Give evidence of your malicious shell running a command:
 
 ```text
+whoami
+ubuntu
+
+ls
+file1.txt  file2.txt  index.html
+```
+
+*(Replace with your actual screenshot or terminal output if required)*
+
 ---
 
 ## Task 2: Iptables
+
+**Reminder Deliverable:** `task2.rules`
+
 ---
 
 ### Would this configuration be a whitelist or blacklist? Explain.
@@ -138,4 +150,3 @@ After applying the `REJECT` rule, my SSH session timed out. I recovered access b
 ---
 
 **End of Lab**
-
