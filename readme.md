@@ -50,7 +50,7 @@ It provides the permissions of the **`ubuntu`** user, since that account execute
 ---
 ![First screenshot](Picture/task1.2.png)
 
-```text
+
 ---
 
 ## Task 2: Iptables
