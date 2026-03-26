@@ -47,13 +47,6 @@ It provides the permissions of the **`ubuntu`** user, since that account execute
 
 ### Give evidence of your malicious shell running a command:
 
-```text
-whoami
-ubuntu
-
-ls
-file1.txt  file2.txt  index.html
-```
 
 *(Replace with your actual screenshot or terminal output if required)*
 
