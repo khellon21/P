@@ -83,8 +83,6 @@ Using `DROP` is more secure because it silently ignores packets.
 
 ### How did you verify this worked?
 
-I:
-
 1. Started the listener on the AWS server.
 2. Ran:
 
