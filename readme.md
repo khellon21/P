@@ -85,7 +85,9 @@ Using `DROP` is more secure because it silently ignores packets.
 
 
 ![First screenshot](Picture/task2.1.png)
+
 ---
+
 ![First screenshot](Picture/task2.2.png)
 
 This confirmed the firewall rule was active.
