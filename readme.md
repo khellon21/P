@@ -46,16 +46,14 @@ It provides the permissions of the **`ubuntu`** user, since that account execute
 ---
 
 ### Give evidence of your malicious shell running a command:
+![First screenshot](Picture/1.1.png)
+---
+![First screenshot](Picture/1.2.png)
 
-
-*(Replace with your actual screenshot or terminal output if required)*
-
+```text
 ---
 
 ## Task 2: Iptables
-
-**Reminder Deliverable:** `task2.rules`
-
 ---
 
 ### Would this configuration be a whitelist or blacklist? Explain.
