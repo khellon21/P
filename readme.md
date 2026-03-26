@@ -83,17 +83,10 @@ Using `DROP` is more secure because it silently ignores packets.
 
 ### How did you verify this worked?
 
-1. Started the listener on the AWS server.
-2. Ran:
 
-   ```bash
-   nc 107.23.98.0 1234
-   ```
-3. Received:
-
-   ```text
-   Connection refused
-   ```
+![First screenshot](Picture/task2.1.png)
+---
+![First screenshot](Picture/task2.2.png)
 
 This confirmed the firewall rule was active.
 
