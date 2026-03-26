@@ -46,7 +46,7 @@ It provides the permissions of the **`ubuntu`** user, since that account execute
 ---
 
 ### Give evidence of your malicious shell running a command:
-![First screenshot](Picture/1.1.png)
+(Picture/1.1.png)
 ---
 ![First screenshot](Picture/1.2.png)
 
