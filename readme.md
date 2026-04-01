@@ -1,136 +1,66 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/0FeAcfa4)
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/JyInQUes)
+## Lab 5 - NIST : CEG 3400
 
-# Lab 4 : CEG 3400 Intro to Cyber Security
+### NIST Vulnerability Taxonomies
 
-## Name: Khellon Patel
+#### Name: Khellon Patel
 
----
+### Task 1 - Inventory
 
-## Task 1: A Shell Game
-
-### What port does the provided command open?
-
-Port **1234**.
-
----
-
-### What is a Bind Shell and a Reverse Shell?
-
-* **Bind Shell:**
-  The target machine opens a communication port (listener) and waits for an incoming connection. The attacker connects to the target machine’s IP address and port to gain shell access.
-
-* **Reverse Shell:**
-  The target machine initiates a connection back to the attacker’s machine. The attacker runs a listener, and the target connects outward. This is commonly used to bypass firewalls that block incoming traffic.
-
-* **Reference:**
-  https://www.geeksforgeeks.org/difference-between-bind-shell-and-reverse-shell/
+* Your 5 CPE's that describe your laptop's software environment.  Please include an OS, web browser, and 3 other valid CPE's for software on your laptop (ideally related to school). 
+  * **Operating System:** `cpe:2.3:o:linux:acrn:1.3:*:*:*:*:*:*:*`
+  * **Web Browser:** `cpe:2.3:a:google:chrome:0.3.154.0:*:*:*:*:*:*:*`
+  * **CS/CEG/IT Software 1:** `cpe:2.3:a:apple:afp_server:-:*:*:*:*:*:*:*`
+  * **CS/CEG/IT Software 2:** `cpe:2.3:a:agendaless:pyramid:1.0:beta3:*:*:*:python:*:*`
+  * **Personal/Wildcard Software:** `cpe:2.3:a:cogboard:red_discord_bot:3.2.2:*:*:*:*:*:*:*`
 
 ---
 
-### Which type of shell does this command open?
+### Task 2 - Your (not real) CPE
 
-This command opens a **Bind Shell**. The AWS instance used:
+* Your properly formatted CPE:
+  `cpe:2.3:a:khellon_patel:split_guys:1.0.0:*:*:*:*:*:*:*`
 
-```bash
-nc -l 1234
-```
-
-This puts the system in listen mode, waiting for incoming connections.
-
----
-
-### What/whose permissions does this shell provide?
-
-It provides the permissions of the **`ubuntu`** user, since that account executed the command.
+Explanation:
+* **Part (`a`):** Selected `a` because "Split Guys" is a software application, not hardware (`h`) or an operating system (`o`).
+* **Vendor (`khellon_patel`):** Identifies the creator and maintainer responsible for the software.
+* **Product (`split_guys`):** Specifies the exact name of the software package.
+* **Version (`1.0.0`):** Adheres to Semantic Versioning (SemVer 2.0.0), indicating the first major, stable release of the software where the vulnerability was present.
+* **Wildcards (`*`):** Used the wildcard character `*` for the remaining fields (update, edition, language, sw_edition, target_sw, target_hw, and other). The weakness exists in the core application logic (the backend code), meaning the vulnerability affects all users regardless of their operating system, device hardware, or language settings. 
 
 ---
 
-### Give evidence of your malicious shell running a command:
-![First screenshot](Picture/task1.1.png)
----
-![First screenshot](Picture/task1.2.png)
+### Task 3 - CWE
 
+* Link to your top 25 CWE
+  [CWE-89: Improper Neutralization of Special Elements used in an SQL Command ('SQL Injection')](https://cwe.mitre.org/data/definitions/89.html)
 
----
+Description:
+SQL Injection occurs when a software application takes untrusted input from a user and inserts it directly into a backend database query without properly sanitizing it or using parameterized queries. This allows an attacker to manipulate the input to change the logic of the SQL statement. A well-known example of this is **CVE-2023-34362**, a massive vulnerability discovered in the MOVEit file transfer software, which allowed unauthenticated attackers to gain unauthorized access to the database.
 
-## Task 2: Iptables
----
-
-### Would this configuration be a whitelist or blacklist? Explain.
-
-This is a **blacklist** configuration.
-
-The firewall allows all incoming traffic by default but explicitly blocks port **1234**.
+**My Vulnerable Code & Impact:**
+In the "Split Guys" application, I created a search feature that allows users to filter their past expenses by typing in a category name (e.g., "Groceries"). In the backend, I concatenated the user's search string directly into the database query: `SELECT * FROM expenses WHERE category = '` + userInput + `';`. Because this code does not sanitize the input, an attacker could enter a payload like `' OR '1'='1` into the search bar. The database would ignore the category filter and return every single row in the `expenses` table, completely compromising the confidentiality of all user financial records.
 
 ---
 
-### Why use the REJECT action?
+### Task 4 - CVE
 
-`REJECT` sends a "connection refused" response immediately. This helps verify quickly that the firewall rule is working.
+* List your properly formatted CVE here:
+  **CVE-2024-XXXXX (Pending)**
+  **CNA:** Matt Kijowski
 
----
+* Assign a CVSS score and defend it (why did you select what you selected in the calculator)
+  * **Base Score:** 9.8 (Critical)
+  * **Vector:** `CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H`
+  * **Defense/Justification:** * **Attack Vector (Network):** The application is web-facing, allowing the attack to be executed remotely over the internet.
+    * **Attack Complexity (Low):** Exploiting the unsanitized search bar requires no special access conditions; a standard SQL injection payload is trivial to execute.
+    * **Privileges Required (None):** The expense search feature is accessible without needing to log in or hold an administrative account.
+    * **User Interaction (None):** The attacker executes the payload directly; no victim needs to click a link or download a file.
+    * **Scope (Unchanged):** The vulnerable component and the impacted component (the database) are under the same security authority.
+    * **Confidentiality, Integrity, & Availability (High):** A successful injection allows the attacker to read all private data (Confidentiality), modify or manipulate records (Integrity), and drop entire database tables (Availability).
 
-### Why NOT use the REJECT action?
+CVE writeup:
+A vulnerability in the expense search module of Khellon Patel Split Guys v1.0.0 allows unauthenticated remote attackers to execute arbitrary SQL commands via improper neutralization of user-supplied input (SQL Injection). This leads to unauthorized data access and potential database destruction. The root cause is the concatenation of raw, unsanitized user input directly into SQL `SELECT` statements instead of utilizing prepared statements. 
 
-It informs attackers that:
-
-* The server exists
-* A firewall is actively blocking them
-
-Using `DROP` is more secure because it silently ignores packets.
-
----
-
-### How did you verify this worked?
-
-
-![First screenshot](Picture/task2.1.png)
-
----
-
-![First screenshot](Picture/task2.2.png)
-
-This confirmed the firewall rule was active.
-
----
-
-## Task 3: Any Port in a Storm
-
-**Reminder Deliverable:** `task3.rules`
-
----
-
-### Would this configuration be a whitelist or blacklist? Explain.
-
-This is a **whitelist** configuration.
-
-Only port **22 (SSH)** is allowed, while all other incoming traffic is rejected.
-
----
-
-### How did you verify this worked?
-
-I tested by running:
-
-```bash
-ssh -i ~/Downloads/labsuser.pem ubuntu@107.23.98.0
-```
-
-* SSH connection succeeded ✅
-* Other ports were blocked ❌
-
----
-
-### Did you lock yourself out?
-
-Yes.
-
-After applying the `REJECT` rule, my SSH session timed out. I recovered access by:
-
-1. Rebooting the EC2 instance via AWS Console
-2. This cleared temporary iptables rules
-3. I reconfigured the firewall correctly afterward
-
----
-
-**End of Lab**
+**References:**
+* https://github.com/yourusername/CEG3400-Lab5-repo
