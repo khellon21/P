@@ -3,7 +3,7 @@
 ## 1. Script Content
 Below is the bash script (`backup_web.sh`) used to archive the Nginx configuration, move it to the RAID array, and enforce a 7-day retention policy.
 
-\`\`\`bash
+```bash
 #!/bin/bash
 
 # --- Variables ---
@@ -22,7 +22,7 @@ tar -czf "$BACKUP_DIR/$ARCHIVE_NAME" "$SOURCE_DIR"
 find "$BACKUP_DIR" -type f -name "web-config-*.tar.gz" -mtime +7 -delete
 
 echo "Backup completed successfully on $TIMESTAMP"
-\`\`\`
+```
 
 ## 2. Cron Logic
 To automate the backup, I added the following entry to the root crontab (`sudo crontab -e`):
