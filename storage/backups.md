@@ -63,7 +63,7 @@ Below is where you should include a screenshot showing multiple backup archives 
 ls -l /mnt/raid_data/backups
 ```
 
-*(Insert your screenshot here)*
+![RAID Backups Screenshot](../picture/my-image.png)
 
 ---
 
