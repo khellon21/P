@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# 1. Check the effective user id (EUID)
+if [ "$EUID" -ne 0 ]; then
+    echo "Error: This script requires sudo or root privileges."
+    echo "Please run again using: sudo $0"
+    exit 1
+fi
+
+# 2. Check that the system package manager is apt
+if ! command -v apt-get &> /dev/null; then
+    echo "Error: This script uses the 'apt' package manager, which is not available on this system."
+    exit 1
+fi
+
+# 3. Check for name conflicts before proceeding
+if command -v aws &> /dev/null; then
+    echo "Error: A command named 'aws' already exists on this system."
+    echo "Installation aborted to prevent name conflicts and unintended behavior."
+    exit 1
+fi
+
+# 4. Provide user with information and prompt to proceed
+echo "==============================================="
+echo "      AWS CLI v2 Installation Script"
+echo "==============================================="
+echo "This script will install the AWS Command Line Interface."
+echo "It will perform the following actions:"
+echo "  - Update apt package lists"
+echo "  - Install required dependencies: 'curl' and 'unzip'"
+echo "  - Download the latest AWS CLI v2 package"
+echo "  - Extract and install the software silently"
+echo "==============================================="
+
+read -p "Do you want to proceed with the installation? (y/n): " choice
+
+if [[ ! "$choice" =~ ^[Yy]$ ]]; then
+    echo "Installation aborted by the user."
+    exit 0
+fi
+
+# 5. Silently install the software and dependencies
+echo "Installing dependencies (curl, unzip)..."
+# Using -qq for quiet mode and redirecting output to /dev/null for total silence
+apt-get update -qq > /dev/null 2>&1
+apt-get install -y -qq curl unzip > /dev/null 2>&1
+
+echo "Downloading AWS CLI v2..."
+# Using -s for silent curl download
+curl -s "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip"
+
+echo "Extracting and installing AWS CLI..."
+# Using -q for quiet unzip
+unzip -q /tmp/awscliv2.zip -d /tmp/
+/tmp/aws/install > /dev/null 2>&1
+
+# Clean up the downloaded temporary files
+rm -rf /tmp/awscliv2.zip /tmp/aws
+
+# 6. Prompt user that install is complete
+echo "==============================================="
+echo "Success! AWS CLI installation is complete."
+echo "You can try it out by running the following command:"
+echo "  aws --version"
+echo "==============================================="
