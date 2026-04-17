@@ -20,3 +20,14 @@ ubuntu@instance-20260226-1214:~$ python3 github.py
 
 👉 Enter 1, 2, or 3: 3
 
+📁 Enter the absolute path to your folder: /home/ubuntu/ceg2140-s26-khellon21/dotfiles
+
+🔍 Scanning folder for text files...
+❌ No readable text lines found in that directory. Try again.
+
+📁 Enter the absolute path to your folder: /home/ubuntu/ceg2140-s26-khellon21/dotfiles
+
+🔍 Scanning folder for text files...
+❌ No readable text lines found in that directory. Try again.
+
+📁 Enter the absolute path to your folder: ^Z          
