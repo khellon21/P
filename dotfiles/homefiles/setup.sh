@@ -16,3 +16,11 @@ fi
 echo "Creating symbolic link for .bash_aliases..."
 ln -s "$REPO_ALIASES" "$TARGET_ALIASES"
 
+echo "Setup complete!"
+echo ""
+echo "========================================================="
+echo " ACTION REQUIRED: Please reload your environment."
+echo " Run the following command to apply your new aliases:"
+echo " source ~/.bashrc"
+echo "========================================================="
+
