@@ -19,8 +19,14 @@ objectClass: organizationalUnit
 ou: Groupsl ```
 ```hi ```
 
-### users.ldif
-Populates `ou=People` with two user accounts. Each entry combines three
+```dn: ou=People,dc=class,dc=local
+objectClass: organizationalUnit
+ou: People
+
+dn: ou=Groups,dc=class,dc=local
+objectClass: organizationalUnit
+ou: Groups
+-with two user accounts. Each entry combines three
 objectClasses so the user is usable across different systems:
 
 - `inetOrgPerson` — standard person attributes (sn, givenName, cn, mail).
