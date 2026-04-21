@@ -68,11 +68,11 @@ The two accounts created are:
 
 
 ## Screenshots
-- ![output showing both OUs](Pictures/structure.png)
+- 1 ![output showing both OUs](Pictures/structure.png)
 
 
-- ![output showing my user entry](Pictures/users.png)
+- 2 ![output showing my user entry](Pictures/users.png)
 
 ## Written Response
 
-Deleting a user once on the LDAP server revokes their access across every system that authenticates against it, so there is no chance of missing a machine and leaving a dormant account behind. That single point of change is faster, less error-prone, and gives a clear audit trail — something you cannot get when the same person has five independent local accounts on five different computers.
+The deletion of a user account on the LDAP server immediately blocks their access to all systems which use the server for authentication. The system automatically identifies all devices which would create dead accounts. The process of making one change at a time becomes faster and produces fewer mistakes while maintaining a detailed audit record which remains inaccessible to users who operate multiple local accounts on different computers.
