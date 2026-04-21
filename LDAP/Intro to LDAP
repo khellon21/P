@@ -68,8 +68,10 @@ The two accounts created are:
 
 
 ## Screenshots
-- `screenshot-01-ous.png` — `ldapsearch` output showing both OUs.
-- `screenshot-02-user.png` — `ldapsearch` output showing my user entry.
+- `![output showing both OUs](Pictures/structure.png)`
+
+
+- `![output showing my user entry](Pictures/users.png)` 
 
 ## Written Response
 
