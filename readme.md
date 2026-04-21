@@ -10,12 +10,14 @@ centralized "source of truth" for user accounts.
 Defines the two Organizational Units (OUs) that act as "folders" inside
 the directory tree:
 
-- `ou=People` — container for all user account entries.
-- `ou=Groups` — container for group entries (e.g., posixGroup objects
-  later on).
+``` `dn: ou=People,dc=class,dc=local
+objectClass: organizationalUnit
+ou: People
 
-Each OU uses the `organizationalUnit` objectClass, which is the standard
-LDAP class for grouping entries.
+dn: ou=Groups,dc=class,dc=local
+objectClass: organizationalUnit
+ou: Groupsl ```
+```hi ```
 
 ### users.ldif
 Populates `ou=People` with two user accounts. Each entry combines three
