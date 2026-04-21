@@ -68,10 +68,10 @@ The two accounts created are:
 
 
 ## Screenshots
-- `![output showing both OUs](Pictures/structure.png)`
+- ![output showing both OUs](Pictures/structure.png)
 
 
-- `![output showing my user entry](Pictures/users.png)` 
+- ![output showing my user entry](Pictures/users.png)
 
 ## Written Response
 
