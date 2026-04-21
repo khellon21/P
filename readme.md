@@ -10,44 +10,67 @@ centralized "source of truth" for user accounts.
 Defines the two Organizational Units (OUs) that act as "folders" inside
 the directory tree:
 
-``` `dn: ou=People,dc=class,dc=local
-objectClass: organizationalUnit
-ou: People
-
-dn: ou=Groups,dc=class,dc=local
-objectClass: organizationalUnit
-ou: Groupsl ```
-```hi ```
-
-```dn: ou=People,dc=class,dc=local
+```
+dn: ou=People,dc=class,dc=local
 objectClass: organizationalUnit
 ou: People
 
 dn: ou=Groups,dc=class,dc=local
 objectClass: organizationalUnit
 ou: Groups
--with two user accounts. Each entry combines three
+
+```
+
+Each OU uses the `organizationalUnit` objectClass, which is the standard
+LDAP class for grouping entries.
+
+### users.ldif
+Populates `ou=People` with two user accounts. Each entry combines three
 objectClasses so the user is usable across different systems:
 
-- `inetOrgPerson` — standard person attributes (sn, givenName, cn, mail).
-- `posixAccount` — Unix/Linux login attributes (uidNumber, gidNumber,
-  homeDirectory, loginShell) so the same record can authenticate SSH
-  logins.
-- `shadowAccount` — password aging attributes for shadow-password
-  compatibility.
+```
+dn: uid=khellon,ou=People,dc=class,dc=local
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: khellon
+sn: <YourLastName>
+givenName: Khellon
+cn: Khellon <YourLastName>
+displayName: Khellon <YourLastName>
+uidNumber: 10001
+gidNumber: 10001
+userPassword: password123
+homeDirectory: /home/khellon
+loginShell: /bin/bash
+
+dn: uid=testuser,ou=People,dc=class,dc=local
+objectClass: inetOrgPerson
+objectClass: posixAccount
+objectClass: shadowAccount
+uid: testuser
+sn: User
+givenName: Test
+cn: Test User
+displayName: Test User
+uidNumber: 10002
+gidNumber: 10002
+userPassword: testpass123
+homeDirectory: /home/testuser
+loginShell: /bin/bash
+
+```
 
 The two accounts created are:
 1. `uid=khellon` — my own account.
 2. `uid=testuser` — a test account to confirm multiple users are
    searchable.
 
-## How to reproduce
-
-See the command guide below (Parts 1–4).
 
 ## Screenshots
 - `screenshot-01-ous.png` — `ldapsearch` output showing both OUs.
 - `screenshot-02-user.png` — `ldapsearch` output showing my user entry.
 
 ## Written Response
-See the final section.
+
+Deleting a user once on the LDAP server revokes their access across every system that authenticates against it, so there is no chance of missing a machine and leaving a dormant account behind. That single point of change is faster, less error-prone, and gives a clear audit trail — something you cannot get when the same person has five independent local accounts on five different computers.
