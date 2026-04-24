@@ -59,7 +59,7 @@ Below is the screenshot showing the site successfully loading via the S3 endpoin
 
 ---
 
-* Citations 
+Citations 
 * **Generative AI Use**: i use Gemini Two structure my markdown file specifically using the prompt " how to add one tap copy feature in markdown file by using that user can copy code in one click " output  ` GitHub/Obsidian	Built-in (Just use ```) `
 
 ## 5. Rubric Checklist
