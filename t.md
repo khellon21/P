@@ -1,0 +1,1 @@
+An nmap ping scan (`nmap -sn 192.168.1.0/24`) was performed on the Khellon Patel Inc. home network on April 24, 2026. The network uses a single CIDR block of **192.168.1.0/24**, which provides 254 usable host addresses. Out of 256 addresses scanned, **4 hosts responded:**
